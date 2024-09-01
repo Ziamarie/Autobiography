@@ -62,6 +62,7 @@ if choice == "Profile":
     with skill_col3:
         st.button("React")
         st.button("OpenAI")
+        st.button("Github")
 
 # Experience Section
 elif choice == "Experience":
