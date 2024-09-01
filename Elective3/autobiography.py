@@ -13,7 +13,6 @@ menu = ["Profile", "Experience", "Portfolio", "Contact"]
 choice = st.sidebar.selectbox("Navigate", menu)
 
 # Define image folder path
-# Relative path to the images directory
 images_path = "images"
 
 # Profile Section
@@ -86,7 +85,6 @@ elif choice == "Portfolio":
     st.write("Here are some UI designs from my projects:")
 
     st.write("### UI for Capstone Project")
-    # Path to the image for Capstone Project
     capstone_image_path = os.path.join(images_path, "Figma.png")
     if os.path.exists(capstone_image_path):
         with Image.open(capstone_image_path) as img:
@@ -95,7 +93,6 @@ elif choice == "Portfolio":
         st.error(f"Image file not found: {capstone_image_path}")
 
     st.write("### UI for System Integration Project")
-    # Path to the image for System Integration Project
     system_integration_image_path = os.path.join(images_path, "Figma2.png")
     if os.path.exists(system_integration_image_path):
         with Image.open(system_integration_image_path) as img:
