@@ -1,115 +1,183 @@
-import streamlit as st
-from PIL import Image
-import os
+import streamlit as st  # type: ignore
+from PIL import Image  # type: ignore
 
 # Set page configuration
 st.set_page_config(page_title="Christzia Marie Atay's Autobiography", page_icon="👩‍💻", layout="wide")
 
-# Header
-st.markdown("<h1 style='text-align: center; color: white;'>Christzia Marie Atay's Autobiography</h1>", unsafe_allow_html=True)
+# --- SIDEBAR NAVIGATION ---
+st.sidebar.title("Navigation")
+selected_tab = st.sidebar.radio("Go to", ["🏠About Me", "🎨Portfolio", "📩Contact Me"])
+st.sidebar.write("---")
+st.sidebar.write("© 2024 by Christzia Marie A. Atay. All rights reserved.")
 
-# Navigation
-menu = ["Profile", "Experience", "Portfolio", "Contact"]
-choice = st.sidebar.selectbox("Navigate", menu)
+# --- MAIN / ABOUT ME ---
+if selected_tab == "🏠About Me":
+    st.title("About Me")
 
-# Define the path to the 'images' folder
-images_path = os.path.join(os.path.dirname(__file__), "images")
-
-# Profile Section
-if choice == "Profile":
-    st.header("About Me")
-    st.write("---")
+    # "Professional Summary" section
+    st.subheader("📄 Professional Summary")
     st.write("""
-    Taking ABM in Senior High School, currently pursuing a Bachelor of Science in Information Technology, expected to graduate in May 2025. 
-    I passed the Third Year, where I cried my heart out, and now I am confident and manifesting in claiming the Diploma.
+        To gain practical experience in the IT field by applying foundational knowledge in software development, testing,
+        and design to real-world projects. I aim to enhance my skills in programming, 
+        problem-solving, and collaboration within a professional setting.
+        Eager to contribute effectively to team goals while learning industry best practices in a hands-on environment.
+    """)
+    st.write("---")
+
+    # Personal Data and Image Section
+    left_column, right_column = st.columns([4, 3])
+    with left_column:
+        st.subheader("📋 Personal Data")
+        st.write("""
+            **Age**: 25  
+            **Date of Birth**: November 29, 1999  
+            **Gender**: Female  
+            **Religion**: Roman Catholic  
+            **Marital Status**: Single  
+        """)
+    with right_column:
+        st.image("images/Zia.png", width=300)
+
+    # Core Qualifications
+    st.write("---")
+    st.subheader("💻 Core Qualifications")
+    st.write("""
+        - Figma, Canva  
+        - Python, Java, HTML, CSS  
+        - Firebase, MySQL, Postman, Trello, ClickUp, GitHub  
+        - Android Studio, Visual Studio Code, ReactJS  
+        - PowerPoint, MS Word, Excel  
+        - Strong Work Ethic  
+        - Time Management  
+        - Critical Thinking  
     """)
 
-    st.write("### Personal Information")
-    col1, col2 = st.columns([1, 2])
-    with col1:
-        # Display the picture from the images folder with specified width
-        image_path = os.path.join(images_path, "Zia.png")
-        if os.path.exists(image_path):
-            st.image(image_path, caption="Christzia Marie Atay", width=150)  # Adjust width as needed
-        else:
-            st.error(f"Image file not found: {image_path}")
-
-    with col2:
-        st.write(f"**Name:** Christzia Marie Atay")
-        st.write(f"**Age:** 24 years old")
-        st.write(f"**School:** Cebu Institute of Technology University")
-        st.write(f"**Interests:** UI/UX, Frontend, and Quality Engineering")
-
-    st.write("### My Skills")
+    # Certifications
     st.write("---")
+    st.subheader("📜 Certifications")
+    st.write("""
+        - Huawei - Information Representation and Data Organization  
+        - Tech Intern to Tech Expert: Crafting Resumes and Mastering Interviews  
+        - Huawei - HCIA-Storage  
+        - Data Analytic Introduction to Machine Learning  
+        - Employment Readiness Seminar  
+        - Software Testing Tutorial  
+        - Introduction to Java  
+    """)
 
-    # Create columns for the skills section
-    skill_col1, skill_col2, skill_col3 = st.columns(3)
+    # Educational Background
+    st.write("---")
+    st.subheader("🎓 Educational Background")
+    st.write("""
+        **College Diploma**  
+        Cebu Institute of Technology-University, Cebu City  
+        Bachelor of Science in Information Technology  
+        S.Y. 2021 – Present  
 
-    # Add skills to the respective columns
-    with skill_col1:
-        st.button("Python")
-        st.button("Java")
-        st.button("Figma")
+        **Senior High School Diploma**  
+        Don Carlos A. Gothong Memorial National High School  
+        S.Y. 2021 – 2021  
+    """)
 
-    with skill_col2:
-        st.button("C")
-        st.button("MySQL")
-        st.button("ClickUp")
+    # References
+    st.write("---")
+    st.subheader("📞 References")
+    st.write("""
+        - **Dr. Leah V. Barbaso**: Capstone and Research Adviser at Cebu Institute of Technology – University  
+          Email: leah.basbaco@cit.edu.ph  
 
-    with skill_col3:
-        st.button("React")
-        st.button("OpenAI")
-        st.button("Github")
+        - **Dr. Patrick L. Bacalso**: CCS OJT Coordinator at Cebu Institute of Technology - University  
+          Email: patrick.bacalso@cit.edu.ph  
+    """)
 
-# Experience Section
-elif choice == "Experience":
-    st.header("Experience")
+# --- PORTFOLIO ---
+elif selected_tab == "🎨Portfolio":
+    st.title("🎨 Project Portfolio")
+    section = st.selectbox("Select a Section", ["Capstone and Research", "System Integration and Architecture", "Application Development and Emerging Technologies"])
 
-    st.write("### ECW Part-time Encoder")
-    st.write("**Work Setup:** Work from Home")
-    st.write("**Dates:** March 23-25, 2022")
-    st.write("**Responsibilities:**")
-    st.write("- Encoding and managing data as per project requirements.")
+    if section == "Capstone and Research":
+        col1, col2, col3 = st.columns(3)
+        with col1:
+            st.image("images/Capstone/C1.png", use_column_width=True)
+            st.image("images/Capstone/C4.png", use_column_width=True)
+        with col2:
+            st.image("images/Capstone/C2.png", use_column_width=True)
+            st.image("images/Capstone/C5.png", use_column_width=True)
+        with col3:
+            st.image("images/Capstone/C3.png", use_column_width=True)
+            st.image("images/Capstone/C6.png", use_column_width=True)
 
-    st.write("### Part-time Barangay Worker at Barangay San Nicolas Proper")
-    st.write("**Dates:** January – June 30, 2018")
-    st.write("**Responsibilities:**")
-    st.write("- Writing reports of GAD Focal.")
-    st.write("- Responsible for recording accurate details of constituents' personal background.")
+    elif section == "System Integration and Architecture":
+        col1, col2, col3 = st.columns(3)
+        with col1:
+            st.image("images/SI/SI1.png", use_column_width=True)
+            st.image("images/SI/SI4.png", use_column_width=True)
+        with col2:
+            st.image("images/SI/SI2.png", use_column_width=True)
+            st.image("images/SI/SI5.png", use_column_width=True)
+        with col3:
+            st.image("images/SI/SI3.png", use_column_width=True)
+            st.image("images/SI/SI6.png", use_column_width=True)
 
-# Portfolio Section
-elif choice == "Portfolio":
-    st.header("Portfolio")
-    st.write("Here are some UI designs from my projects:")
+    elif section == "Application Development and Emerging Technologies":
+        col1, col2, col3, col4 = st.columns(4)
+        with col1:
+            st.image("images/AppDev/A1.png", use_column_width=True)
+        with col2:
+            st.image("images/AppDev/A2.png", use_column_width=True)
+        with col3:
+            st.image("images/AppDev/A3.png", use_column_width=True)
+        with col4:
+            st.image("images/AppDev/A4.png", use_column_width=True)
 
-    st.write("### UI for Capstone Project")
-    # Path to the image for Capstone Project
-    capstone_image_path = os.path.join(images_path, "Figma.png")
-    if os.path.exists(capstone_image_path):
-        st.image(capstone_image_path, caption="UI for Capstone Project", use_column_width=True)
-    else:
-        st.error(f"Image file not found: {capstone_image_path}")
+# --- CONTACT ME ---
+elif selected_tab == "📩Contact Me":
+    st.title("📩 Contact Me")
+    left_column, right_column = st.columns([1.8, 1.2])
 
-    st.write("### UI for System Integration Project")
-    # Path to the image for System Integration Project
-    system_integration_image_path = os.path.join(images_path, "Figma2.png")
-    if os.path.exists(system_integration_image_path):
-        st.image(system_integration_image_path, caption="UI for System Integration Project", use_column_width=True)
-    else:
-        st.error(f"Image file not found: {system_integration_image_path}")
+    with left_column:
+        st.subheader("Contact Form")
+        contact_form = """
+        <form action="https://formsubmit.co/christziamariea@gmail.com" method="POST">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="text" name="name" placeholder="Your name" required>
+            <input type="email" name="email" placeholder="Your email" required>
+            <textarea name="message" placeholder="Your message here..." required></textarea>
+            <button type="submit">Send</button>
+        </form>
+        """
+        st.markdown(contact_form, unsafe_allow_html=True)
+        st.markdown("""
+            <style>
+            form {
+                display: flex;
+                flex-direction: column;
+            }
+            input, textarea, button {
+                margin: 5px 0;
+                padding: 10px;
+                border-radius: 5px;
+                border: 1px solid #ccc;
+            }
+            button {
+                background-color: #4CAF50;
+                color: white;
+                border: none;
+                cursor: pointer;
+            }
+            button:hover {
+                background-color: #45a049;
+            }
+            </style>
+        """, unsafe_allow_html=True)
 
-# Contact Section
-elif choice == "Contact":
-    st.header("Contact")
-    
-    st.write("Feel free to reach out to me through the following channels:")
+    with right_column:
+        st.subheader("Get in Touch")
+        st.write("""
+            Feel free to reach out to me through any of the platforms below:  
 
-    st.write("### LinkedIn")
-    st.write("[Christzia Marie Atay's LinkedIn Profile](https://www.linkedin.com/in/christzia-marie-atay-388b80243/)")
+            - **Email**: christziamariea@gmail.com  
+            - **Phone**: +63 966 995 5095  
+        """)
 
-    st.write("### Contact Number")
-    st.write("+639 966 995 5095")
-
-    st.write("### Email")
-    st.write("christziamariea@gmail.com")
+# --- END ---
